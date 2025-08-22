@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <a href="http://localhost:3000">HOME</a>
+    <a id="home" href="http://localhost:3000">HOME</a>
     <div class="container">
         <div class="list">
             <h1 class="h2">To Do List</h1>
@@ -22,10 +22,16 @@
             <ul>
                 <% tasks.forEach(task=> { %>
                     <li>
-                        <%= task.content %>
-                            <form id="delBtn" method="post" action="/tasks/delete/<%=task.id%>">
+                        <span>
+                            <%= task.content %>
+                        </span>
+
+                        <div class="buttons">
+                            <a href="/tasks/edit/<%= task.id %>">Edit</a>
+                            <form class="delBtn" method="post" action="/tasks/delete/<%=task.id%>">
                                 <button>X</button>
                             </form>
+                        </div>
                     </li>
                     <% }) %>
             </ul>

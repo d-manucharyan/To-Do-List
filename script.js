@@ -31,7 +31,7 @@ app.post('/tasks', readTasks, async (req, res) => {
     await fs.unlink(path.join(__dirname, 'task', 'tasks.json'))
     await fs.appendFile(path.join(__dirname, 'task', 'tasks.json'), JSON.stringify(tasks, null, 2))
     res.redirect('/tasks')
-    console.log(tasks)  
+    console.log(tasks)
 })
 
 // DELETE task
@@ -45,5 +45,23 @@ app.post('/tasks/delete/:id', readTasks, async (req, res) => {
     res.redirect('/tasks')
 })
 
+app.get('/tasks/edit/:id', readTasks, (req, res) => {
+    const { tasks } = res.locals
+    const task = tasks.find(t => t.id == req.params.id)
+    res.render(path.join(__dirname, 'view', 'edit.ejs'), { task })
+})
+
+app.post('/tasks/edit/:id', readTasks, async (req, res) => {
+    const { tasks } = res.locals
+    let task = tasks.find(t => t.id == req.params.id)
+    if (task) {
+        task.content = req.body.task
+    }
+
+    await fs.unlink(path.join(__dirname, 'task', 'tasks.json'))
+    await fs.appendFile(path.join(__dirname, 'task', 'tasks.json'), JSON.stringify(tasks, null, 2))
+
+    res.redirect('/tasks')
+})
 
 app.listen(3000)
