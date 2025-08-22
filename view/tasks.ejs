@@ -22,7 +22,10 @@
             <ul>
                 <% tasks.forEach(task=> { %>
                     <li>
-                        <%=task.content %> <span>X</span>
+                        <%= task.content %>
+                            <form id="delBtn" action="/tasks/delete/<%= task.id %>" method="post" >
+                                <button type="submit">X</button>
+                            </form>
                     </li>
                     <% }) %>
             </ul>

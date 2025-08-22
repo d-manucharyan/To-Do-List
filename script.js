@@ -34,4 +34,16 @@ app.post('/tasks', readTasks, async (req, res) => {
     console.log(tasks)  
 })
 
+// DELETE task
+app.post('/tasks/delete/:id', readTasks, async (req, res) => {
+    let { tasks } = res.locals
+    tasks = tasks.filter(t => t.id != req.params.id)
+
+    await fs.unlink(path.join(__dirname, 'task', 'tasks.json'))
+    await fs.appendFile(path.join(__dirname, 'task', 'tasks.json'), JSON.stringify(tasks, null, 2))
+
+    res.redirect('/tasks')
+})
+
+
 app.listen(3000)

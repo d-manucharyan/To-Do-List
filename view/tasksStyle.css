@@ -106,13 +106,3 @@ li {
     border-radius: 10px;
 }
 
-li span {
-    color: orangered;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-li span:hover {
-    color: darkred;
-}
