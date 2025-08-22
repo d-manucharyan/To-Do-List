@@ -106,3 +106,12 @@ li {
     border-radius: 10px;
 }
 
+#delBtn button  {
+    color: orangered;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+    border: none;
+    font-size: 18px;
+    background: none;
+}
