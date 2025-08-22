@@ -30,7 +30,6 @@ app.post('/tasks', readTasks, async (req, res) => {
     await fs.appendFile(path.join(__dirname, 'task', 'tasks.json'), JSON.stringify(tasks, null, 2))
     res.redirect('/tasks')
     console.log(tasks)
-
 })
 
 app.listen(3000)
